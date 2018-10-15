@@ -106,7 +106,7 @@ public class ScheduledTask {
 
 				AccountListResponse accountListResponse = ctx.account.list();
 				ListIterator<AccountProperties> iterator = accountListResponse.getAccounts().listIterator();
-
+				logger.info("-----------------");
 				while (iterator.hasNext()) {
 
 					Account account = getAccount(iterator);
@@ -157,7 +157,7 @@ public class ScheduledTask {
 								: tradeInPlay.getMostPositive());
 						tradeInPlay.setOpenPL(unrealizedPL);
 						//tradeInPlay.setProfitStop(0);
-						if (tradeInPlay.getMostPositive() < unrealizedPL
+						if (tradeInPlay.getMostPositive() <= unrealizedPL
 								|| (unrealizedPL > 0 && tradeInPlay.getProfitStop() == 0)) {
 							tradeInPlay.setMostPositive(unrealizedPL > tradeInPlay.getMostPositive() ? unrealizedPL
 									: tradeInPlay.getMostPositive());
